@@ -24,32 +24,36 @@ Python 3.7 or newer
 The command-line tool woff2_compress (Google WOFF2 toolchain)
 
 Check Python version:
-python3 --version
+`python3 --version`
 
 If Python is installed, create a virtual environment (recommended):
+```
 python3 -m venv venv
 source venv/bin/activate (on macOS/Linux)
 venv\Scripts\activate (on Windows)
+```
 
 Then continue with the WOFF2 tool installation below.
 
 ## INSTALLING woff2_compress
 
 macOS:
-brew install woff2
+`brew install woff2`
 
 Debian / Ubuntu:
-sudo apt-get install woff2
+`sudo apt-get install woff2`
 
 If the package is not found, build it manually:
+```
 sudo apt-get install brotli
 git clone https://github.com/google/woff2.git
 
 cd woff2 && make
 sudo cp woff2_compress /usr/local/bin
+```
 
 Check the installation:
-woff2_compress -h
+`woff2_compress -h`
 
 If this command shows help text instead of an error, it’s installed correctly.
 
@@ -57,6 +61,7 @@ If this command shows help text instead of an error, it’s installed correctly.
 
 Assume you have a folder structure like this:
 
+```
 /assets/fonts/
 ├── Barlow/
 │ ├── Barlow-Regular.ttf
@@ -67,14 +72,16 @@ Assume you have a folder structure like this:
 ├── FunnelDisplay-VariableFont_wght.ttf
 └── static/
 └── FunnelDisplay-Bold.ttf
+```
 
-Place the build_fonts.py script inside the "fonts" folder:
+Place the fontbuilder.py script inside the "fonts" folder:
+```
 cd /assets/fonts
-wget https://raw.githubusercontent.com/
-<your-repo>/main/build_fonts.py
+wget https://github.com/ugurakcil/fontbuilder/main/fontbuilder.py
+```
 
 Run the script inside that directory:
-python3 build_fonts.py
+`python3 fontbuilder.py`
 
 ## WHAT IT DOES
 
@@ -89,11 +96,12 @@ Skips families that already have a CSS file
 Uses relative URLs for portability
 
 Console output example:
-[ok] barlow.css → faces:18 woff2:18
-[skip] CSS exists, leaving family untouched: funnel_display.css
+[ok] `barlow.css` → faces:18 woff2:18
+[skip] CSS exists, leaving family untouched: `funnel_display.css`
 
 ## EXAMPLE OUTPUT CSS
 
+```
 @font-face {
 font-family: 'Barlow';
 src: url('./Barlow/Barlow-Regular.woff2') format('woff2'),
@@ -102,6 +110,7 @@ font-weight: 400;
 font-style: normal;
 font-display: swap;
 }
+```
 
 ## NOTES
 
